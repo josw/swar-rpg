@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+  <!-- # LEVEL : ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF  -->
+  <appender name="CONSOLE.ERR" class="org.apache.log4j.ConsoleAppender">
+      <param name="target" value="System.err"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="[%d{yyyy-MM-dd HH:mm:ss}]%p - %C{1}.%M(%L) | %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+          <param name="LevelMin" value="WARN" />
+          <param name="LevelMax" value="FATAL" />
+          <param name="AcceptOnMatch" value="false" />
+        </filter>
+    </appender>
+    <appender name="CONSOLE.OUT" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="[%d{yyyy-MM-dd HH:mm:ss}]%p - %C{1}.%M(%L) | %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+          <param name="LevelMin" value="DEBUG" />
+          <param name="LevelMax" value="INFO" />
+          <param name="AcceptOnMatch" value="false" />
+        </filter>
+    </appender>
+
+    <logger name="com.neowiz.bugs">
+        <level value="DEBUG"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="WARN"/>
+    </logger>
+    
+    <logger name="org.apache.hadoop.conf">
+    	<level value="WARN"/>
+    </logger>
+
+    <logger name="org.apache.hadoop.hbase">
+    	<level value="WARN"/>
+    </logger>
+
+
+  <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="CONSOLE.ERR"/>
+        <appender-ref ref="CONSOLE.OUT"/>
+    </root>
+
+</log4j:configuration>

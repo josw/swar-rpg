@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/decorators">
+	<excludes>
+		<pattern>*.htm</pattern>
+		<pattern>*.html</pattern>
+		<pattern>/script/*</pattern>
+	</excludes>
+
+	<decorator name="default" page="commonLayout.ftl">
+		<url-pattern>/*</url-pattern>
+	</decorator>
+
+	<decorator name="test" page="testLayout.ftl">
+		<url-pattern>/test/*</url-pattern>
+	</decorator>
+
+</decorators>
