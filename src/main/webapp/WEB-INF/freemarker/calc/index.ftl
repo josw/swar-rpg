@@ -51,10 +51,15 @@ $(function() {
 		$('#fee_sell').val(sell[0]);
 		$('#fee_sell_extra').val(sell[1]);
 		
+		$('#tp_buy').val($('#price_buy').val() * $('#amt').val());
+		$('#tp_sell').val($('#price_sell').val() * $('#amt').val());
 	
-		$('#charge_buy').val($('#price_buy').val() * $('#amt').val() * ($('#fee_buy').val()/100) + parseInt($('#fee_buy_extra').val()));
-		$('#charge_sell').val($('#price_sell').val() * $('#amt').val() * ($('#fee_sell').val()/100) + parseInt($('#fee_sell_extra').val()));
-		$('#tax_sell').val($('#price_sell').val() * $('#amt').val() * ($('#tax').val()/100));
+		$('#charge_buy').val(Math.round($('#tp_buy').val() * ($('#fee_buy').val()/100) + parseInt($('#fee_buy_extra').val())));
+		$('#charge_sell').val(Math.round($('#tp_sell').val() * ($('#fee_sell').val()/100) + parseInt($('#fee_sell_extra').val())));
+		$('#tax_sell').val($('#tp_buy').val() * ($('#tax').val()/100));
+		
+		
+		
 	});
 
 });
@@ -72,17 +77,28 @@ $(function() {
 매도단가 : <input type="text" id="price_sell" name="price_sell" /><br/>
 수량 : <input type="text" id="amt" name="amt" /><br/>
 
-매수 수수료 : <input type="text" id="fee_buy" name="fee_buy" /> + <input type="text" id="fee_buy_extra" name="fee_buy_extra" /><br/>
-매도 수수료 : <input type="text" id="fee_sell" name="fee_sell" /> + <input type="text" id="fee_sell_extra" name="fee_sell_extra" /><br/>
+매수 수수료율 : <input type="text" id="fee_buy" name="fee_buy" /> + <input type="text" id="fee_buy_extra" name="fee_buy_extra" /><br/>
+매도 수수료율 : <input type="text" id="fee_sell" name="fee_sell" /> + <input type="text" id="fee_sell_extra" name="fee_sell_extra" /><br/>
 
 매도 세 : <input type="text" id="tax" name="tax" value="0.3"/> <br/>
 
 <input type="button" value="계산" id="doCalc" />
 
 <p>
-
+매수가 : <input id="tp_buy" />
 매수 수수료 : <input id="charge_buy" /><br/>
+매수총액 : <input id="amt_buy" /><br/><br/>
+
+
+매도가 : <input id="tp_sell" />
 매도 수수료 : <input id="charge_sell" />  매도 세 : <input id="tax_sell" /><br/>
+매도총액 : <input id="amt_sell" /><br/><br/>
+
+차익 : <input id="amt_total" />
+
+
+
+
 
 
 </p>
