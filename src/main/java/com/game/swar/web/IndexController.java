@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.game.swar.aop.TestApi;
+import com.game.swar.map.service.MapService;
 import com.game.swar.member.service.UserService;
 import com.game.swar.model.Parameter;
 import com.game.swar.service.RedisTestService;
@@ -27,6 +28,9 @@ public class IndexController {
 
     @Resource
     UserService userService; 
+    
+    @Resource
+    MapService mapService;
 
 	@RequestMapping({"","/","/index"})
 	@TestApi
@@ -52,7 +56,7 @@ public class IndexController {
 	
 		
 		
-		logger.debug (userService.getUser(1));
+		logger.debug (">>>>" + userService.getUser(1));
 		
 		
 		
@@ -60,14 +64,18 @@ public class IndexController {
 		return mav;
 	}
 	
-	@RequestMapping("/calc")
+	@RequestMapping("/map")
 	@TestApi
-	public ModelAndView calc(ModelAndView mav) {
+	public ModelAndView map(ModelAndView mav) {
 		
 		
+		logger.debug (mapService.getMap());
+		
+		logger.debug (userService.getUser(1));
 		
 		
-		mav.setViewName("/calc/index");
+		mav.setViewName("/map/map");
 		return mav;
 	}
+	
 }
